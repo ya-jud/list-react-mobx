@@ -7,7 +7,6 @@ const tableComponent = (): JSX.Element => {
 
   const [listData, setData]: any = useState([]);
   useEffect(() => {
-    console.log(listData);
     setData(Store.listData);
     console.log(listData);
   });
