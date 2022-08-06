@@ -4,7 +4,7 @@ import Data from "./types";
 class Store {
   @observable isLoading: boolean = true
   @observable listData: Data[][] = [];
-  @observable userId: number = 1;
+  @observable pageNumber: number = 1;
 
   constructor(){
     makeAutoObservable(this);
@@ -24,11 +24,16 @@ class Store {
     });
   };
   @action
-  setUserId(value: boolean) {
-    if(value && this.userId !== 10)
-      this.userId += 1;
-    if(!value && this.userId !== 1)
-      this.userId -= 1;
+  backAndForth(value: boolean) { // xd
+    if(value && this.pageNumber !== 10)
+      this.pageNumber += 1;
+    if(!value && this.pageNumber !== 1)
+      this.pageNumber -= 1;
+  }
+  @action
+  setPageNumber(value: number) {
+    value++;
+    this.pageNumber = value;
   }
 };
 

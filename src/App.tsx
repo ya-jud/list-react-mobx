@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite";
-import { useState } from "react";
 import Store from "./store/index";
 import "./styles.sass";
 
@@ -14,15 +13,20 @@ const App = (): JSX.Element => {
         <Search />
         <TableComponent />
         <div className="navigation">
-          <button onClick={() => {Store.setUserId(false)}}>Назад</button>
+          <button onClick={() => {Store.backAndForth(false)}}>Назад</button>
           <div>{
             btn.map((item, index) => {
               return(
-                <span key={index}>{ item }</span>
+                <span
+                  key={index}
+                  onClick={() => {Store.setPageNumber(index)}}
+                >
+                  { item }
+                </span>
               );
             })
           }</div>
-          <button onClick={() => {Store.setUserId(true)}}>Далее</button>
+          <button onClick={() => {Store.backAndForth(true)}}>Далее</button>
         </div>
       </div>
     </div>

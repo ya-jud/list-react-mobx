@@ -17,7 +17,7 @@ const tableComponent = (): JSX.Element => {
       <tbody>{
         Store.isLoading ?
         (<tr><th>no data</th></tr>) :
-        (Store.listData[Store.userId - 1].map((item: any, index: number) => {
+        (Store.listData[Store.pageNumber - 1].map((item: any, index: number) => {
           return(
             <tr key={index}>
               <th>{ item.id }</th>
