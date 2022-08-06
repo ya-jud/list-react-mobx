@@ -1,15 +1,10 @@
-import "./table-styles.sass";
-import Store from "../../store/index";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
+import "./table-styles.sass";
+
+import Data from "../../store/types";
+import Store from "../../store/index";
 
 const tableComponent = (): JSX.Element => {
-
-  const [listData, setData]: any = useState([]);
-  useEffect(() => {
-    setData(Store.listData);
-    console.log(listData);
-  });
   return(
     <table>
       <thead>
@@ -19,13 +14,19 @@ const tableComponent = (): JSX.Element => {
           <th>Описание</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th>{ (Store.listData.length > 1) ? listData[0].id : "no data" }</th>
-          <td>sunt aut facere repellat provident occaecati excepturi optio reprehenderit</td>
-          <td>quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto</td>
-        </tr>
-      </tbody>
+      <tbody>{
+        Store.isLoading ?
+        (<tr><th>no data</th></tr>) :
+        (Store.listData[Store.userId - 1].map((item: any, index: number) => {
+          return(
+            <tr key={index}>
+              <th>{ item.id }</th>
+              <td>{ item.title }</td>
+              <td>{ item.body }</td>
+            </tr>
+          )
+        }))
+      }</tbody>
     </table>
   );
 };
