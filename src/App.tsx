@@ -6,7 +6,6 @@ import Search from "./components/search/search-component";
 import TableComponent from "./components/table/table-component";
 
 const App = (): JSX.Element => {
-  let btn: number[] = [1,2,3,4,5,6,7,8,9,10];
   return (
     <div className='main-box'>
       <div className="content">
@@ -15,13 +14,18 @@ const App = (): JSX.Element => {
         <div className="navigation">
           <button onClick={() => {Store.backAndForth(false)}}>Назад</button>
           <div>{
-            btn.map((item, index) => {
+            Store.listData.map((item: any, index: number) => {
               return(
                 <span
                   key={index}
+                  className={
+                    ((index + 1) === Store.pageNumber) ?
+                    "isActivePage" :
+                    "default"
+                  }
                   onClick={() => {Store.setPageNumber(index)}}
                 >
-                  { item }
+                  {index + 1}
                 </span>
               );
             })
