@@ -1,5 +1,5 @@
 import React from "react";
-import "./search-styles.sass";
+import "./styles.sass";
 
 const Search = (): JSX.Element => {
   return(

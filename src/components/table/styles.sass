@@ -1,9 +1,12 @@
-table
+%content-sizes
   position: relative
   width: 100%
   min-height: 800px
   max-height: 800px
   border-collapse: collapse
+  
+table
+  @extend %content-sizes
 thead
   tr
     background: #474955
@@ -14,12 +17,23 @@ thead
     height: 54px
     th
       padding: 19px 0
+      span
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
     th:nth-child(1)
       width: 110px
     th:nth-child(2)
       width: 529px
     th:nth-child(3)
       width: 432px
+    .arrowSvg
+      width: 9px
+      fill: #fff
+      transform-origin: center
+      transform:  rotate(90deg)
+      margin: 0 0 0 34px
 tbody
   color: #474955
   th, td
@@ -27,3 +41,10 @@ tbody
     border: 1px solid #E3E6EC
   td
     padding: 0px 12px
+
+.noData
+  @extend %content-sizes
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 1px solid #474955

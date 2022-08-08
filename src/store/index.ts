@@ -1,5 +1,11 @@
-import { action, observable, autorun, makeAutoObservable, runInAction } from "mobx";
-import Data from "./types";
+import Data from "../@types/types";
+import { 
+  action,
+  observable,
+  autorun,
+  makeAutoObservable,
+  runInAction 
+} from "mobx";
 
 class Store {
   @observable isLoading: boolean = true

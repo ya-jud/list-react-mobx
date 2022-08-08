@@ -70,6 +70,7 @@ const config = {
   devtool: "source-map",
   devServer: {
     hot: true,
+    historyApiFallback: true,
   },
 };
 

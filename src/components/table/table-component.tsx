@@ -1,23 +1,32 @@
 import { observer } from "mobx-react-lite";
-import "./table-styles.sass";
+import "./styles.sass";
 
-import Data from "../../store/types";
 import Store from "../../store/index";
+import Data from "../../@types/types";
 
-const tableComponent = (): JSX.Element => {
+type Props = { data: Data[] }
+
+const tableComponent = (props: Props): JSX.Element => {
+  const arrowSvg = () => {
+    return(
+      <svg className="arrowSvg" viewBox="0 0 5 9">
+        <path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" />
+      </svg>
+    );
+  }
   return(
-    <table>
+    Store.isLoading ?
+    ( <div className="noData">no data</div> ) :
+    (<table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Заголовок</th>
-          <th>Описание</th>
+          <th><span>ID{arrowSvg()}</span></th>
+          <th><span>Заголовок{arrowSvg()}</span></th>
+          <th><span>Описание{arrowSvg()}</span></th>
         </tr>
       </thead>
       <tbody>{
-        Store.isLoading ?
-        (<tr><th>no data</th></tr>) :
-        (Store.listData[Store.pageNumber - 1].map((item: any, index: number) => {
+        props.data.map((item: any, index: number) => {
           return(
             <tr key={index}>
               <th>{ item.id }</th>
@@ -25,9 +34,9 @@ const tableComponent = (): JSX.Element => {
               <td>{ item.body }</td>
             </tr>
           )
-        }))
+        })
       }</tbody>
-    </table>
+    </table>)
   );
 };
 
